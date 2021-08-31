@@ -14,7 +14,9 @@ public class Member {
     @Id @GeneratedValue
     @Column(name = "member_id")
     private Long id;
+
     private String username;
+
     private int age;
 
     @ManyToOne(fetch = FetchType.LAZY)  // FetchType.LAZY로 꼭 바꿔줘야한다. -> JPA의 연관관계는 모두 다 FetchType.LAZY로 바꿔줘야한다. 성능최적화 이점.
@@ -35,6 +37,15 @@ public class Member {
         if (team != null) {
             changeTeam(team);
         }
+    }
+
+    public void setTeam(Team team) {
+        this.team = team;
+    }
+
+    public Member(String username, int age) {
+        this.username = username;
+        this.age = age;
     }
 
     public void changeTeam(Team team) {
